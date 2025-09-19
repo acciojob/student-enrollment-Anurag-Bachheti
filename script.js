@@ -10,6 +10,20 @@ const enrollmentData = {
 };
 
 // complete this function
-async function calculateEnrollment() {}
+async function calculateEnrollment(data){
+	
+	const result = data.enrollmentData.reduce((acc, curr) => {
+		if(acc[curr.course]){
+			acc[curr.course] += 1;
+		}else{
+			acc[curr.course] = 1;
+		}
+		return acc;
+	}, {});
+	console.log(result);
 
-calculateEnrollment();
+	let container = document.getElementById("container");
+	container.textContent = JSON.stringify(result, null, 2)
+}
+
+calculateEnrollment(enrollmentData);
